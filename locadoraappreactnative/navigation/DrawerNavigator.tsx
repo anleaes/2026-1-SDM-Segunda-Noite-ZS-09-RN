@@ -1,0 +1,192 @@
+import { Ionicons } from '@expo/vector-icons';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import React from 'react';
+import CustomDrawerContent from '../components/CustomDrawerContent';
+import HomeScreen from '../screens/HomeScreen';
+import PessoaScreen from '../screens/PessoaScreen';
+import ClientesScreen, { Cliente } from '../screens/ClientesScreen';
+import CreateClienteScreen from '../screens/CreateClienteScreen';
+import EditClienteScreen from '../screens/EditClienteScreen';
+import CarteirasScreen, { Carteira } from '../screens/CarteirasScreen';
+import CreateCarteiraScreen from '../screens/CreateCarteiraScreen';
+import EditCarteiraScreen from '../screens/EditCarteiraScreen';
+import FuncionariosScreen, { Funcionario } from '../screens/FuncionariosScreen';
+import CreateFuncionarioScreen from '../screens/CreateFuncionarioScreen';
+import EditFuncionarioScreen from '../screens/EditFuncionarioScreen';
+import AgenciasScreen, { Agencia } from '../screens/AgenciasScreen';
+import CreateAgenciaScreen from '../screens/CreateAgenciaScreen';
+import EditAgenciaScreen from '../screens/EditAgenciaScreen';
+import CategoriasScreen, { Categoria } from '../screens/CategoriasScreen';
+import CreateCategoriaScreen from '../screens/CreateCategoriaScreen';
+import EditCategoriaScreen from '../screens/EditCategoriaScreen';
+import VeiculosScreen, { Veiculo } from '../screens/VeiculosScreen';
+import CreateVeiculoScreen from '../screens/CreateVeiculoScreen';
+import EditVeiculoScreen from '../screens/EditVeiculoScreen';
+
+export type DrawerParamList = {
+  Home: undefined;
+  Pessoa: undefined;
+  Clientes: undefined;
+  CreateCliente: undefined;
+  EditCliente: { cliente: Cliente };
+  Carteiras: undefined;
+  CreateCarteira: undefined;
+  EditCarteira: { carteira: Carteira };
+  Funcionarios: undefined;
+  CreateFuncionario: undefined;
+  EditFuncionario: { funcionario: Funcionario };
+  Agencias: undefined;
+  CreateAgencia: undefined;
+  EditAgencia: { agencia: Agencia };
+  Categorias: undefined;
+  CreateCategoria: undefined;
+  EditCategoria: { categoria: Categoria };
+  Veiculos: undefined;
+  CreateVeiculo: undefined;
+  EditVeiculo: { veiculo: Veiculo };
+};
+
+const Drawer = createDrawerNavigator<DrawerParamList>();
+
+const DrawerNavigator = () => {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Home"
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={{
+        drawerActiveTintColor: '#4B7BE5',
+        drawerLabelStyle: { marginLeft: 0, fontSize: 16 },
+        drawerStyle: { backgroundColor: '#fff', width: 250 },
+        headerStyle: { backgroundColor: '#4B7BE5' },
+        headerTintColor: '#fff',
+      }}
+    >
+      <Drawer.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="home-outline" size={size} color={color} />,
+          title: 'Início',
+        }}
+      />
+      <Drawer.Screen
+        name="Clientes"
+        component={ClientesScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="people-outline" size={size} color={color} />,
+          title: 'Clientes',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateCliente"
+        component={CreateClienteScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo cliente' }}
+      />
+      <Drawer.Screen
+        name="EditCliente"
+        component={EditClienteScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar cliente' }}
+      />
+      <Drawer.Screen
+        name="Carteiras"
+        component={CarteirasScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="card-outline" size={size} color={color} />,
+          title: 'Carteiras',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateCarteira"
+        component={CreateCarteiraScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova carteira' }}
+      />
+      <Drawer.Screen
+        name="EditCarteira"
+        component={EditCarteiraScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar carteira' }}
+      />
+      <Drawer.Screen
+        name="Funcionarios"
+        component={FuncionariosScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="briefcase-outline" size={size} color={color} />,
+          title: 'Funcionários',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateFuncionario"
+        component={CreateFuncionarioScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo funcionário' }}
+      />
+      <Drawer.Screen
+        name="EditFuncionario"
+        component={EditFuncionarioScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar funcionário' }}
+      />
+      <Drawer.Screen
+        name="Agencias"
+        component={AgenciasScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="business-outline" size={size} color={color} />,
+          title: 'Agências',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateAgencia"
+        component={CreateAgenciaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova agência' }}
+      />
+      <Drawer.Screen
+        name="EditAgencia"
+        component={EditAgenciaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar agência' }}
+      />
+      <Drawer.Screen
+        name="Categorias"
+        component={CategoriasScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="pricetags-outline" size={size} color={color} />,
+          title: 'Categorias',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateCategoria"
+        component={CreateCategoriaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova categoria' }}
+      />
+      <Drawer.Screen
+        name="EditCategoria"
+        component={EditCategoriaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar categoria' }}
+      />
+      <Drawer.Screen
+        name="Veiculos"
+        component={VeiculosScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="car-outline" size={size} color={color} />,
+          title: 'Veículos',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateVeiculo"
+        component={CreateVeiculoScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo veículo' }}
+      />
+      <Drawer.Screen
+        name="EditVeiculo"
+        component={EditVeiculoScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar veículo' }}
+      />
+      <Drawer.Screen
+        name="Pessoa"
+        component={PessoaScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="information-circle-outline" size={size} color={color} />,
+          title: 'Pessoa',
+        }}
+      />
+    </Drawer.Navigator>
+  );
+};
+
+export default DrawerNavigator;
