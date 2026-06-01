@@ -28,6 +28,9 @@ import EditAdicionalScreen from '../screens/EditAdicionalScreen';
 import SegurosScreen, { Seguro } from '../screens/SegurosScreen';
 import CreateSeguroScreen from '../screens/CreateSeguroScreen';
 import EditSeguroScreen from '../screens/EditSeguroScreen';
+import ReservasScreen, { Reserva } from '../screens/ReservasScreen';
+import CreateReservaScreen from '../screens/CreateReservaScreen';
+import EditReservaScreen from '../screens/EditReservaScreen';
 
 export type DrawerParamList = {
   Home: undefined;
@@ -56,6 +59,9 @@ export type DrawerParamList = {
   Seguros: undefined;
   CreateSeguro: undefined;
   EditSeguro: { seguro: Seguro };
+  Reservas: undefined;
+  CreateReserva: undefined;
+  EditReserva: { reserva: Reserva };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -224,6 +230,24 @@ const DrawerNavigator = () => {
         name="EditSeguro"
         component={EditSeguroScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar seguro' }}
+      />
+      <Drawer.Screen
+        name="Reservas"
+        component={ReservasScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="calendar-outline" size={size} color={color} />,
+          title: 'Reservas',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateReserva"
+        component={CreateReservaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova reserva' }}
+      />
+      <Drawer.Screen
+        name="EditReserva"
+        component={EditReservaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar reserva' }}
       />
       <Drawer.Screen
         name="Pessoa"
