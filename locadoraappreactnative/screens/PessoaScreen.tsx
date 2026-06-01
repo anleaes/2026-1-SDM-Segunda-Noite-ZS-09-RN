@@ -12,6 +12,9 @@ const PessoaScreen = ({ navigation }: Props) => (
       Pessoa é a estrutura base do sistema. Cliente e Funcionário herdam dela os
       atributos nome, CPF e data de nascimento.
     </Text>
+    <Text style={styles.item}>• Nome</Text>
+    <Text style={styles.item}>• CPF</Text>
+    <Text style={styles.item}>• Data de nascimento</Text>
   </View>
 );
 
@@ -33,6 +36,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
     textAlign: 'center',
+  },
+  item: {
+    fontSize: 15,
+    color: '#444',
+    marginTop: 6,
   },
 });
 
