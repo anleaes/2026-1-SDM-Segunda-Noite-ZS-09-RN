@@ -34,6 +34,9 @@ import EditReservaScreen from '../screens/EditReservaScreen';
 import PagamentosScreen, { Pagamento } from '../screens/PagamentosScreen';
 import CreatePagamentoScreen from '../screens/CreatePagamentoScreen';
 import EditPagamentoScreen from '../screens/EditPagamentoScreen';
+import ItensAdicionaisScreen, { ItemAdicional } from '../screens/ItensAdicionaisScreen';
+import CreateItemAdicionalScreen from '../screens/CreateItemAdicionalScreen';
+import EditItemAdicionalScreen from '../screens/EditItemAdicionalScreen';
 
 export type DrawerParamList = {
   Home: undefined;
@@ -68,6 +71,9 @@ export type DrawerParamList = {
   Pagamentos: undefined;
   CreatePagamento: undefined;
   EditPagamento: { pagamento: Pagamento };
+  ItensAdicionais: undefined;
+  CreateItemAdicional: undefined;
+  EditItemAdicional: { itemAdicional: ItemAdicional };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -272,6 +278,24 @@ const DrawerNavigator = () => {
         name="EditPagamento"
         component={EditPagamentoScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar pagamento' }}
+      />
+      <Drawer.Screen
+        name="ItensAdicionais"
+        component={ItensAdicionaisScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="gift-outline" size={size} color={color} />,
+          title: 'Itens Adicionais',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateItemAdicional"
+        component={CreateItemAdicionalScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo item adicional' }}
+      />
+      <Drawer.Screen
+        name="EditItemAdicional"
+        component={EditItemAdicionalScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar item adicional' }}
       />
       <Drawer.Screen
         name="Pessoa"
