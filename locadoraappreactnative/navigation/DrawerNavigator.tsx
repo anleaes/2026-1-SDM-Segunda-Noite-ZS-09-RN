@@ -37,6 +37,9 @@ import EditPagamentoScreen from '../screens/EditPagamentoScreen';
 import ItensAdicionaisScreen, { ItemAdicional } from '../screens/ItensAdicionaisScreen';
 import CreateItemAdicionalScreen from '../screens/CreateItemAdicionalScreen';
 import EditItemAdicionalScreen from '../screens/EditItemAdicionalScreen';
+import ManutencoesScreen, { Manutencao } from '../screens/ManutencoesScreen';
+import CreateManutencaoScreen from '../screens/CreateManutencaoScreen';
+import EditManutencaoScreen from '../screens/EditManutencaoScreen';
 
 export type DrawerParamList = {
   Home: undefined;
@@ -74,6 +77,9 @@ export type DrawerParamList = {
   ItensAdicionais: undefined;
   CreateItemAdicional: undefined;
   EditItemAdicional: { itemAdicional: ItemAdicional };
+  Manutencoes: undefined;
+  CreateManutencao: undefined;
+  EditManutencao: { manutencao: Manutencao };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -296,6 +302,24 @@ const DrawerNavigator = () => {
         name="EditItemAdicional"
         component={EditItemAdicionalScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar item adicional' }}
+      />
+      <Drawer.Screen
+        name="Manutencoes"
+        component={ManutencoesScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="construct-outline" size={size} color={color} />,
+          title: 'Manutenções',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateManutencao"
+        component={CreateManutencaoScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova manutenção' }}
+      />
+      <Drawer.Screen
+        name="EditManutencao"
+        component={EditManutencaoScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar manutenção' }}
       />
       <Drawer.Screen
         name="Pessoa"
