@@ -40,6 +40,9 @@ import EditItemAdicionalScreen from '../screens/EditItemAdicionalScreen';
 import ManutencoesScreen, { Manutencao } from '../screens/ManutencoesScreen';
 import CreateManutencaoScreen from '../screens/CreateManutencaoScreen';
 import EditManutencaoScreen from '../screens/EditManutencaoScreen';
+import MultasScreen, { Multa } from '../screens/MultasScreen';
+import CreateMultaScreen from '../screens/CreateMultaScreen';
+import EditMultaScreen from '../screens/EditMultaScreen';
 
 export type DrawerParamList = {
   Home: undefined;
@@ -80,6 +83,9 @@ export type DrawerParamList = {
   Manutencoes: undefined;
   CreateManutencao: undefined;
   EditManutencao: { manutencao: Manutencao };
+  Multas: undefined;
+  CreateMulta: undefined;
+  EditMulta: { multa: Multa };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -320,6 +326,24 @@ const DrawerNavigator = () => {
         name="EditManutencao"
         component={EditManutencaoScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar manutenção' }}
+      />
+      <Drawer.Screen
+        name="Multas"
+        component={MultasScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="warning-outline" size={size} color={color} />,
+          title: 'Multas',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateMulta"
+        component={CreateMultaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Nova multa' }}
+      />
+      <Drawer.Screen
+        name="EditMulta"
+        component={EditMultaScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar multa' }}
       />
       <Drawer.Screen
         name="Pessoa"
