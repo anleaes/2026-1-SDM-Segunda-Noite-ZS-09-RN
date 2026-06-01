@@ -22,6 +22,9 @@ import EditCategoriaScreen from '../screens/EditCategoriaScreen';
 import VeiculosScreen, { Veiculo } from '../screens/VeiculosScreen';
 import CreateVeiculoScreen from '../screens/CreateVeiculoScreen';
 import EditVeiculoScreen from '../screens/EditVeiculoScreen';
+import AdicionaisScreen, { Adicional } from '../screens/AdicionaisScreen';
+import CreateAdicionalScreen from '../screens/CreateAdicionalScreen';
+import EditAdicionalScreen from '../screens/EditAdicionalScreen';
 
 export type DrawerParamList = {
   Home: undefined;
@@ -44,6 +47,9 @@ export type DrawerParamList = {
   Veiculos: undefined;
   CreateVeiculo: undefined;
   EditVeiculo: { veiculo: Veiculo };
+  Adicionais: undefined;
+  CreateAdicional: undefined;
+  EditAdicional: { adicional: Adicional };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -176,6 +182,24 @@ const DrawerNavigator = () => {
         name="EditVeiculo"
         component={EditVeiculoScreen}
         options={{ drawerItemStyle: { display: 'none' }, title: 'Editar veículo' }}
+      />
+      <Drawer.Screen
+        name="Adicionais"
+        component={AdicionaisScreen}
+        options={{
+          drawerIcon: ({ color, size }) => <Ionicons name="add-circle-outline" size={size} color={color} />,
+          title: 'Adicionais',
+        }}
+      />
+      <Drawer.Screen
+        name="CreateAdicional"
+        component={CreateAdicionalScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Novo adicional' }}
+      />
+      <Drawer.Screen
+        name="EditAdicional"
+        component={EditAdicionalScreen}
+        options={{ drawerItemStyle: { display: 'none' }, title: 'Editar adicional' }}
       />
       <Drawer.Screen
         name="Pessoa"
