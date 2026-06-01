@@ -2,6 +2,7 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
+import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
 type Props = DrawerScreenProps<DrawerParamList, 'EditMulta'>;
@@ -52,8 +53,7 @@ const EditMultaScreen = ({ route, navigation }: Props) => {
         <Text style={styles.label}>Pago</Text>
         <Switch value={pago} onValueChange={setPago} />
       </View>
-      <Text style={styles.label}>ID da Reserva</Text>
-      <TextInput value={reserva} onChangeText={setReserva} style={styles.input} keyboardType="numeric" />
+      <SeletorRelacionado label="Reserva" endpoint="reservas" campoNome="status" valor={reserva} onChange={setReserva} />
       {saving ? (
         <ActivityIndicator size="large" color="#4B7BE5" />
       ) : (

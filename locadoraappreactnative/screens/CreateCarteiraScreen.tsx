@@ -3,6 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
+import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
 type Props = DrawerScreenProps<DrawerParamList, 'CreateCarteira'>;
@@ -44,8 +45,7 @@ const CreateCarteiraScreen = ({ navigation }: Props) => {
       <TextInput value={categoria} onChangeText={setCategoria} style={styles.input} />
       <Text style={styles.label}>Data de validade (AAAA-MM-DD)</Text>
       <TextInput value={dataValidade} onChangeText={setDataValidade} style={styles.input} />
-      <Text style={styles.label}>ID do cliente</Text>
-      <TextInput value={cliente} onChangeText={setCliente} style={styles.input} keyboardType="numeric" />
+      <SeletorRelacionado label="Cliente" endpoint="clientes" campoNome="nome" valor={cliente} onChange={setCliente} />
       {saving
         ? <ActivityIndicator size="large" color="#4B7BE5" />
         : <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />

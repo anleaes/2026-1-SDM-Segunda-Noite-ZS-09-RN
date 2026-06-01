@@ -53,7 +53,7 @@ const ClientesScreen = ({ navigation }: Props) => {
       <Text style={styles.subtitle}>Carteira</Text>
       {item.carteiraMotorista ? (
         <Text style={styles.related}>
-          {item.carteiraMotorista.numeroRegistro} ({item.carteiraMotorista.categoria})
+          #{item.carteiraMotorista.id} {item.carteiraMotorista.numeroRegistro} ({item.carteiraMotorista.categoria})
         </Text>
       ) : (
         <Text style={styles.related}>Nenhuma</Text>

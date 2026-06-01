@@ -3,6 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
+import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
 type Props = DrawerScreenProps<DrawerParamList, 'CreateReserva'>;
@@ -64,12 +65,9 @@ const CreateReservaScreen = ({ navigation }: Props) => {
       <TextInput value={valorTotal} onChangeText={setValorTotal} style={styles.input} keyboardType="numeric" />
       <Text style={styles.label}>Status</Text>
       <TextInput value={status} onChangeText={setStatus} style={styles.input} />
-      <Text style={styles.label}>ID do Cliente</Text>
-      <TextInput value={cliente} onChangeText={setCliente} style={styles.input} keyboardType="numeric" />
-      <Text style={styles.label}>ID do Veículo</Text>
-      <TextInput value={veiculo} onChangeText={setVeiculo} style={styles.input} keyboardType="numeric" />
-      <Text style={styles.label}>ID da Agência</Text>
-      <TextInput value={agencia} onChangeText={setAgencia} style={styles.input} keyboardType="numeric" />
+      <SeletorRelacionado label="Cliente" endpoint="clientes" campoNome="nome" valor={cliente} onChange={setCliente} />
+      <SeletorRelacionado label="Veículo" endpoint="veiculos" campoNome="modelo" valor={veiculo} onChange={setVeiculo} />
+      <SeletorRelacionado label="Agência" endpoint="agencias" campoNome="nome" valor={agencia} onChange={setAgencia} />
       {saving ? (
         <ActivityIndicator size="large" color="#4B7BE5" />
       ) : (

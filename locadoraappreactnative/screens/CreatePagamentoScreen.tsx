@@ -3,6 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
+import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
 type Props = DrawerScreenProps<DrawerParamList, 'CreatePagamento'>;
@@ -53,8 +54,7 @@ const CreatePagamentoScreen = ({ navigation }: Props) => {
       <TextInput value={metodoPagamento} onChangeText={setMetodoPagamento} style={styles.input} />
       <Text style={styles.label}>Status</Text>
       <TextInput value={status} onChangeText={setStatus} style={styles.input} />
-      <Text style={styles.label}>ID da Reserva</Text>
-      <TextInput value={reserva} onChangeText={setReserva} style={styles.input} keyboardType="numeric" />
+      <SeletorRelacionado label="Reserva" endpoint="reservas" campoNome="status" valor={reserva} onChange={setReserva} />
       {saving ? (
         <ActivityIndicator size="large" color="#4B7BE5" />
       ) : (

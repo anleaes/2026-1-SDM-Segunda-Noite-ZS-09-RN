@@ -57,7 +57,7 @@ const VeiculosScreen = ({ navigation }: Props) => {
       <Text style={styles.subtitle}>Manutenções</Text>
       {item.manutencoes.length > 0 ? (
         item.manutencoes.map(m => (
-          <Text key={m.id} style={styles.related}>{m.descricao} - {m.status}</Text>
+          <Text key={m.id} style={styles.related}>#{m.id} {m.descricao} - {m.status}</Text>
         ))
       ) : (
         <Text style={styles.related}>Nenhuma</Text>
