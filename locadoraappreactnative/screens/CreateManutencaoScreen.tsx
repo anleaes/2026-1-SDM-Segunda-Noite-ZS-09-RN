@@ -3,6 +3,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
+import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
 type Props = DrawerScreenProps<DrawerParamList, 'CreateManutencao'>;
@@ -53,8 +54,7 @@ const CreateManutencaoScreen = ({ navigation }: Props) => {
       <TextInput value={custo} onChangeText={setCusto} style={styles.input} keyboardType="numeric" />
       <Text style={styles.label}>Status</Text>
       <TextInput value={status} onChangeText={setStatus} style={styles.input} />
-      <Text style={styles.label}>ID do Veículo</Text>
-      <TextInput value={veiculo} onChangeText={setVeiculo} style={styles.input} keyboardType="numeric" />
+      <SeletorRelacionado label="Veículo" endpoint="veiculos" campoNome="modelo" valor={veiculo} onChange={setVeiculo} />
       {saving ? (
         <ActivityIndicator size="large" color="#4B7BE5" />
       ) : (

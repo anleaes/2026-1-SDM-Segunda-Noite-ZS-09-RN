@@ -52,7 +52,7 @@ const AgenciasScreen = ({ navigation }: Props) => {
       <Text style={styles.subtitle}>Veículos</Text>
       {item.veiculos.length > 0 ? (
         item.veiculos.map(v => (
-          <Text key={v.id} style={styles.related}>{v.modelo} ({v.placa})</Text>
+          <Text key={v.id} style={styles.related}>#{v.id} {v.modelo} ({v.placa})</Text>
         ))
       ) : (
         <Text style={styles.related}>Nenhum</Text>
@@ -61,7 +61,7 @@ const AgenciasScreen = ({ navigation }: Props) => {
       <Text style={styles.subtitle}>Funcionários</Text>
       {item.funcionarios.length > 0 ? (
         item.funcionarios.map(f => (
-          <Text key={f.id} style={styles.related}>{f.nome} - {f.cargo}</Text>
+          <Text key={f.id} style={styles.related}>#{f.id} {f.nome} - {f.cargo}</Text>
         ))
       ) : (
         <Text style={styles.related}>Nenhum</Text>

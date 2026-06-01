@@ -51,7 +51,7 @@ const CategoriasScreen = ({ navigation }: Props) => {
       <Text style={styles.subtitle}>Veículos</Text>
       {item.veiculos.length > 0 ? (
         item.veiculos.map(v => (
-          <Text key={v.id} style={styles.related}>{v.modelo} ({v.placa})</Text>
+          <Text key={v.id} style={styles.related}>#{v.id} {v.modelo} ({v.placa})</Text>
         ))
       ) : (
         <Text style={styles.related}>Nenhum</Text>

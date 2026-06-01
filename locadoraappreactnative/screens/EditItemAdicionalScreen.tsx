@@ -2,6 +2,7 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
+import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
 type Props = DrawerScreenProps<DrawerParamList, 'EditItemAdicional'>;
@@ -36,10 +37,8 @@ const EditItemAdicionalScreen = ({ route, navigation }: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>ID da Reserva</Text>
-      <TextInput value={reserva} onChangeText={setReserva} style={styles.input} keyboardType="numeric" />
-      <Text style={styles.label}>ID do Adicional</Text>
-      <TextInput value={adicional} onChangeText={setAdicional} style={styles.input} keyboardType="numeric" />
+      <SeletorRelacionado label="Reserva" endpoint="reservas" campoNome="status" valor={reserva} onChange={setReserva} />
+      <SeletorRelacionado label="Adicional" endpoint="adicionais" campoNome="descricao" valor={adicional} onChange={setAdicional} />
       <Text style={styles.label}>Quantidade</Text>
       <TextInput value={quantidade} onChangeText={setQuantidade} style={styles.input} keyboardType="numeric" />
       {saving ? (

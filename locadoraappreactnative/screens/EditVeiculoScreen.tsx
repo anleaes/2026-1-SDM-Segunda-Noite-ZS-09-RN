@@ -2,6 +2,7 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
+import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
 type Props = DrawerScreenProps<DrawerParamList, 'EditVeiculo'>;
@@ -67,10 +68,8 @@ const EditVeiculoScreen = ({ route, navigation }: Props) => {
         <Text style={styles.label}>Disponível</Text>
         <Switch value={disponivel} onValueChange={setDisponivel} />
       </View>
-      <Text style={styles.label}>ID da agência</Text>
-      <TextInput value={agencia} onChangeText={setAgencia} style={styles.input} keyboardType="numeric" />
-      <Text style={styles.label}>ID da categoria</Text>
-      <TextInput value={categoria} onChangeText={setCategoria} style={styles.input} keyboardType="numeric" />
+      <SeletorRelacionado label="Agência" endpoint="agencias" campoNome="nome" valor={agencia} onChange={setAgencia} />
+      <SeletorRelacionado label="Categoria" endpoint="categorias-veiculo" campoNome="nome" valor={categoria} onChange={setCategoria} />
       {saving
         ? <ActivityIndicator size="large" color="#4B7BE5" />
         : <Button title="Salvar" onPress={handleSave} color="#4B7BE5" />
