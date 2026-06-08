@@ -1,6 +1,6 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
@@ -19,12 +19,16 @@ const EditAdicionalScreen = ({ route, navigation }: Props) => {
 
   const handleSave = async () => {
     setSaving(true);
-    await fetch(`${API_URL}/adicionais/${adicional.id}/`, {
+    const response = await fetch(`${API_URL}/adicionais/${adicional.id}/`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ descricao, valorDiaria }),
     });
-    navigation.navigate('Adicionais');
+    if (response.ok) {
+      navigation.navigate('Adicionais');
+    } else {
+      Alert.alert('Erro', 'Não foi possível salvar. Verifique os dados (datas no formato AAAA-MM-DD).');
+    }
     setSaving(false);
   };
 

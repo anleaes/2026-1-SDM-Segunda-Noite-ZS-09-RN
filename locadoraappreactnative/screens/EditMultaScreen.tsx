@@ -1,6 +1,6 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
 import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
@@ -26,7 +26,7 @@ const EditMultaScreen = ({ route, navigation }: Props) => {
 
   const handleSave = async () => {
     setSaving(true);
-    await fetch(`${API_URL}/multas/${multa.id}/`, {
+    const response = await fetch(`${API_URL}/multas/${multa.id}/`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -37,7 +37,11 @@ const EditMultaScreen = ({ route, navigation }: Props) => {
         reserva: Number(reserva),
       }),
     });
-    navigation.navigate('Multas');
+    if (response.ok) {
+      navigation.navigate('Multas');
+    } else {
+      Alert.alert('Erro', 'Não foi possível salvar. Verifique os dados (datas no formato AAAA-MM-DD).');
+    }
     setSaving(false);
   };
 

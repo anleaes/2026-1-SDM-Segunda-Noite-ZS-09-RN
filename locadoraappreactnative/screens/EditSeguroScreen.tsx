@@ -1,6 +1,6 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
@@ -21,12 +21,16 @@ const EditSeguroScreen = ({ route, navigation }: Props) => {
 
   const handleSave = async () => {
     setSaving(true);
-    await fetch(`${API_URL}/seguros/${seguro.id}/`, {
+    const response = await fetch(`${API_URL}/seguros/${seguro.id}/`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ descricao, franquia, valorDiaria }),
     });
-    navigation.navigate('Seguros');
+    if (response.ok) {
+      navigation.navigate('Seguros');
+    } else {
+      Alert.alert('Erro', 'Não foi possível salvar. Verifique os dados (datas no formato AAAA-MM-DD).');
+    }
     setSaving(false);
   };
 
