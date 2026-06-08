@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
 
@@ -26,12 +26,16 @@ const CreateAgenciaScreen = ({ navigation }: Props) => {
 
   const handleSave = async () => {
     setSaving(true);
-    await fetch(`${API_URL}/agencias/`, {
+    const response = await fetch(`${API_URL}/agencias/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome, endereco, telefone, ativa }),
     });
-    navigation.navigate('Agencias');
+    if (response.ok) {
+      navigation.navigate('Agencias');
+    } else {
+      Alert.alert('Erro', 'Não foi possível salvar. Verifique os dados (datas no formato AAAA-MM-DD).');
+    }
     setSaving(false);
   };
 

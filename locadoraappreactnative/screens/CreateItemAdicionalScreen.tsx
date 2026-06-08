@@ -1,7 +1,7 @@
 import { DrawerScreenProps } from '@react-navigation/drawer';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { API_URL } from '../services/api';
 import SeletorRelacionado from '../components/SeletorRelacionado';
 import { DrawerParamList } from '../navigation/DrawerNavigator';
@@ -24,7 +24,7 @@ const CreateItemAdicionalScreen = ({ navigation }: Props) => {
 
   const handleSave = async () => {
     setSaving(true);
-    await fetch(`${API_URL}/itens-adicionais/`, {
+    const response = await fetch(`${API_URL}/itens-adicionais/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -33,7 +33,11 @@ const CreateItemAdicionalScreen = ({ navigation }: Props) => {
         quantidade: Number(quantidade),
       }),
     });
-    navigation.navigate('ItensAdicionais');
+    if (response.ok) {
+      navigation.navigate('ItensAdicionais');
+    } else {
+      Alert.alert('Erro', 'Não foi possível salvar. Verifique os dados (datas no formato AAAA-MM-DD).');
+    }
     setSaving(false);
   };
 
